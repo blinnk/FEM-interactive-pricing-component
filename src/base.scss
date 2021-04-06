@@ -12,7 +12,11 @@ html,
 body {
   font-family: 'Manrope', sans-serif;
   color: $text;
-  background: $mainBackground url(./images/bg-pattern.svg) no-repeat top right 100%;
+  background: $mainBackground url(./images/bg-pattern.svg) no-repeat top / 100% 40%;
+
+  @media only screen and (min-width: 768px) {
+    background-size: 100% 55%;
+  }
 }
 
 .App {
@@ -20,13 +24,14 @@ body {
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
 .header {
   align-self: flex-start;
-  margin-top: 2rem;
-  padding: 4rem 2rem;
+  padding: 3rem 2rem;
+  margin: 2rem auto;
   background: url(./images/pattern-circles.svg) no-repeat center;
   width: 100%;
   text-align: center;
@@ -35,30 +40,58 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media only screen and (min-width: 768px) {
+    display: grid;
+    grid-template-areas:
+      "tl tl"
+      'span1 span2';
+    padding: 3rem 2rem;
+    margin: 3rem auto;
+
+    span:first-of-type {
+      padding-left: 0.6rem;
+      grid-area: span1;
+    }
+
+    span:last-of-type {
+      grid-area: span2;
+      padding-right: 0.5rem;
+    }
+  }
 }
 
 .header__h1 {
   color: $textBackground;
   font-size: 20px;
   padding-bottom: 0.25rem;
+
+  @media only screen and (min-width: 768px) {
+    grid-area: tl;
+    font-size: 28px;
+    padding-bottom: 0.65rem;
+  }
 }
 
 .header__span {
   font-size: 13px;
   padding-bottom: 0.25rem;
+  font-weight: 600;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 15px;
+  }
 }
 
 .card {
   width: 327px;
   height: 478px;
   background-color: $componentBackground;
-  border-radius: 25px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   flex-direction: column;
-  box-shadow: 7px 9px 38px -11px rgba(0, 0, 0, 0.62);
-  -webkit-box-shadow: 7px 9px 38px -11px rgba(0, 0, 0, 0.62);
-  -moz-box-shadow: 7px 9px 38px -11px rgba(0, 0, 0, 0.62);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   >* {
     display: flex;
@@ -66,6 +99,17 @@ body {
     justify-content: center;
     flex-direction: column;
     margin: 1.5rem 0 1rem 0;
+
+    @media only screen and (min-width: 768px) {
+      margin: 0;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 540px;
+    height: 397px;
+    padding: 2rem 0;
+    margin: 0 0 2rem 0;
   }
 }
 
@@ -76,8 +120,20 @@ body {
   justify-content: space-between;
   align-self: flex-start;
 
+  @media only screen and (min-width: 768px) {
+    display: grid;
+    grid-template-areas:
+      'pageviews pageviews price price'
+      'slider slider slider slider';
+    padding: auto 1rem;
+  }
+
   >*:not(:last-child) {
     padding: 0 2rem 2rem 2rem;
+
+    @media only screen and (min-width: 768px) {
+      padding: 0 2rem;
+    }
   }
 
   .card__pageviews {
@@ -85,12 +141,38 @@ body {
     letter-spacing: 1.71px;
     text-transform: uppercase;
     font-weight: bold;
+
+    @media only screen and (min-width: 768px) {
+      grid-area: pageviews;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 14px;
+      width: 100%;
+      height: 100%;
+      padding-top: 8px;
+
+      span:first-of-type {
+        padding-right: 0.35rem;
+      }
+    }
   }
 
   .slider__container {
     width: 100%;
     display: flex;
     height: 100%;
+
+    @media only screen and (min-width: 768px) {
+      grid-area: slider;
+      padding: 2.5rem 2rem;
+    }
+
+    .rc-slider-handle:active {
+      background: #24AEA1 url('./images/icon-slider.svg') no-repeat center !important;
+    }
+
+
   }
 
   .card__subsection-1 {
@@ -100,21 +182,44 @@ body {
     width: 100%;
     height: 100%;
 
+    @media only screen and (min-width: 768px) {
+      display: inline-flex;
+      grid-area: price;
+      justify-content: flex-start;
+    }
+
     .dollars {
       padding-top: 0.5rem;
+
+      @media only screen and (min-width: 768px) {
+        padding-top: 0;
+        margin-left: 1rem;
+      }
 
       .dollars__amt {
         font-size: 32px;
         font-weight: 900;
         color: $textBackground;
+
+        @media only screen and (min-width: 768px) {
+          font-size: 40px;
+        }
       }
     }
 
     .billing__period {
       font-size: 16px;
       padding: 0.7rem 0 0 0.5rem;
+      text-transform: lowercase;
+
+      @media only screen and (min-width: 768px) {
+        padding-top: 0;
+
+      }
     }
   }
+
+
 }
 
 .card__section-2 {
@@ -126,6 +231,11 @@ body {
   margin: 1rem auto;
   padding-bottom: 2.4rem;
   border-bottom: 2px solid $emptySlider;
+
+  @media only screen and (min-width: 768px) {
+    margin: 1rem 0 0 0;
+    padding: 2rem auto;
+  }
 
   .toggle {
     align-self: center;
@@ -139,14 +249,24 @@ body {
     justify-content: center;
     width: 100%;
 
+
+
     &.flex-end {
       justify-content: flex-end;
       padding-right: 10px;
+
+      @media only screen and (min-width: 768px) {
+        padding-right: 16px;
+      }
     }
 
     &.flex-start {
       justify-content: flex-start;
       padding-left: 10px;
+
+      @media only screen and (min-width: 768px) {
+        padding-left: 16px;
+      }
     }
 
     .yearly-discount {
@@ -164,9 +284,34 @@ body {
       vertical-align: middle;
       border-radius: 16px;
 
-      span {
-        padding-bottom: 1px;
+      @media only screen and (min-width: 768px) {
+        width: 80px;
+        margin-left: 10px;
       }
+
+      span:first-of-type {
+        padding-bottom: 1px;
+
+        display: flex;
+
+        .span__mobile-shown {
+          display: block;
+
+          @media only screen and (min-width: 768px) {
+            display: none;
+          }
+        }
+
+        .span__mobile-hidden {
+          display: none;
+
+          @media only screen and (min-width: 768px) {
+            display: block;
+            padding-left: 2px;
+          }
+        }
+      }
+
     }
   }
 }
@@ -179,11 +324,17 @@ body {
   height: 100%;
   margin: 0.25rem auto;
 
+
+
   ul.member__perks {
     list-style: none;
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    @media only screen and (min-width: 768px) {
+      align-items: flex-start;
+    }
 
     li {
       padding-bottom: 0.5rem;
@@ -209,5 +360,23 @@ body {
     height: 41px;
     margin: 1.5rem auto;
     border-radius: 20.5px;
+    transition: color 0.3s;
+
+    &:hover {
+      cursor: pointer;
+      color: white;
+    }
+
+    @media only screen and (min-width: 768px) {
+      margin: 0;
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    margin: 1.5rem 0 0 0;
   }
 }

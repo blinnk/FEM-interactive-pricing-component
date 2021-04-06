@@ -51,15 +51,15 @@
 }
 
 .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: $toggleBackground;
+  background-color: $sliderBackground;
 }
 
 .react-toggle--checked .react-toggle-track {
-  background-color: $discountBackground;
+  background-color: $sliderBackground;
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background-color: $discountBackground;
+  background-color: $sliderBackground;
 }
 
 .react-toggle-track-check {

@@ -36,14 +36,6 @@ function usePrevious(value) {
 	return ref;
 }
 
-function useCurrent(value) {
-	const ref = useRef();
-	useEffect(() => {
-		ref.current = value;
-	});
-	return ref.current;
-}
-
 const Card = () => {
 	const [pageViews, setPageViews] = useState(125);
 	const [dollars, setDollars] = useState(20);
@@ -92,10 +84,10 @@ const Card = () => {
 			<div className='card__section-1'>
 				<span className='card__pageviews'>
 					<span className='pageviews__value'>{pageViews}k </span>
-					pageviews
+					<span>pageviews</span>
 				</span>
 				<div className='slider__container'>
-					<Slider
+          <Slider
 						onChange={onSliderChange}
 						value={sliderValue}
 						step={25}
@@ -108,6 +100,7 @@ const Card = () => {
 							height: 40,
 							position: 'relative',
 							bottom: 10,
+							boxShadow: '0 4px 4px rgba(0, 0, 0, 0.25)',
 						}}
 						railStyle={{
 							background: '#eaeefb',
@@ -140,7 +133,10 @@ const Card = () => {
 				<div className='billing-cycle-group flex-start'>
 					<span className='billing-cycle'>Yearly Billing</span>
 					<div className='yearly-discount'>
-						<span>-25%</span>
+						<span>
+							<span className='span__mobile-shown'>-</span>
+							25% <span className='span__mobile-hidden'>discount</span>{' '}
+						</span>
 					</div>
 				</div>
 			</div>
